@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Кристалл — Трекер напоминаний</title>
+  <meta name="description" content="Кристалл — красивый трекер задач и напоминаний в стиле розового хрусталя. Работает офлайн.">
+  <meta name="theme-color" content="#22103d">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self' blob:; object-src 'none'; base-uri 'self'">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-theme="crystal" data-ui="glass" data-transition="fade" data-completed="strike">
+  <!-- Фоновый слой с коллажом (затемняется оверлеем для читаемости) -->
+  <div id="bg-layer" aria-hidden="true"></div>
+  <div id="bg-overlay" aria-hidden="true"></div>
+
+  <div id="app">
+    <aside id="sidebar" aria-label="Основная навигация">
+      <div class="sidebar-logo" id="sidebar-logo"></div>
+      <div class="sidebar-profile" id="sidebar-profile"></div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-footer">
+        <button class="btn btn-crystal btn-block" id="sidebar-new"></button>
+      </div>
+    </aside>
+
+    <div id="main">
+      <header id="topbar">
+        <div class="topbar-logo" id="topbar-logo"></div>
+        <h1 class="topbar-title" id="topbar-title"></h1>
+        <div class="topbar-actions">
+          <button class="icon-btn" id="bell-btn" aria-label="Уведомления">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+            <span class="bell-badge" id="bell-badge" hidden></span>
+          </button>
+          <button class="avatar-btn" id="avatar-btn" aria-label="Профиль"></button>
+        </div>
+      </header>
+
+      <main id="view" tabindex="-1"></main>
+    </div>
+
+    <nav id="tabbar" aria-label="Навигация"></nav>
+    <button id="fab" aria-label="Новая задача">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+  </div>
+
+  <!-- Панель уведомлений -->
+  <div id="notif-panel" class="notif-panel" hidden>
+    <div class="notif-panel-head">
+      <strong id="notif-panel-title"></strong>
+      <button class="link-btn" id="notif-mark-read"></button>
+    </div>
+    <div class="notif-panel-list" id="notif-panel-list"></div>
+  </div>
+
+  <div id="reminder-root"></div>
+  <div id="modal-root"></div>
+  <div id="toast-root" aria-live="polite"></div>
+  <div id="flash-overlay" hidden></div>
+
+  <script src="env/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/notify.js"></script>
+  <script src="js/views.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
